@@ -1,0 +1,26 @@
+# 虚拟环境与缓存
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# 工具缓存
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# 运行产物（报告、评测 JSON 等，随时可重新生成）
+results/
+*.report.html
+
+# 编辑器 / 系统
+.idea/
+.vscode/
+.DS_Store

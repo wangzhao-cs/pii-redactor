@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    name: 单元测试（Python ${{ matrix.python-version }}）
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: 安装 Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: 零安装运行单元测试（核心功能无第三方依赖）
+        run: python -m unittest discover -s tests -v
+      - name: 冒烟：检测示例文档
+        env:
+          PYTHONPATH: src
+        run: python -m pii_redactor detect data/samples/01_resume.md
+      - name: 冒烟：评测内置合成标注集
+        env:
+          PYTHONPATH: src
+        run: python -m pii_redactor eval --types PHONE,ID_CARD

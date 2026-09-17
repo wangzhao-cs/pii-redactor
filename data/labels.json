@@ -1,0 +1,637 @@
+{
+  "version": 1,
+  "synthetic": true,
+  "description": "合成标注集：全部文本均为虚构数据，标注为人工完成，偏移由脚本计算并校验。评测口径见 pii_redactor.evaluate（span 级精确匹配 + 泄漏率）。",
+  "documents": [
+    {
+      "doc_id": "01_resume",
+      "path": "samples/01_resume.md",
+      "title": "个人简历",
+      "note": "简历类文档：身份信息集中，含带 +86 前缀与分隔符的手机号",
+      "spans": [
+        {
+          "type": "PERSON_NAME",
+          "start": 73,
+          "end": 76,
+          "text": "李文博",
+          "note": "「姓名：」触发"
+        },
+        {
+          "type": "PHONE",
+          "start": 108,
+          "end": 125,
+          "text": "+86 139 1234 5678",
+          "note": "+86 前缀 + 空格分隔"
+        },
+        {
+          "type": "EMAIL",
+          "start": 133,
+          "end": 156,
+          "text": "liwenbo1990@example.com",
+          "note": "邮箱"
+        },
+        {
+          "type": "ID_CARD",
+          "start": 164,
+          "end": 182,
+          "text": "110101199003078515",
+          "note": "18 位身份证（校验位合法）"
+        },
+        {
+          "type": "ADDRESS",
+          "start": 190,
+          "end": 204,
+          "text": "北京市海淀区中关村大街27号",
+          "note": "省市+区+路+号"
+        },
+        {
+          "type": "BANK_CARD",
+          "start": 365,
+          "end": 382,
+          "text": "62220212345678903",
+          "note": "17 位工资卡（Luhn 合法）"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 397,
+          "end": 400,
+          "text": "王秀兰",
+          "note": "「紧急联系人：」触发"
+        },
+        {
+          "type": "PHONE",
+          "start": 406,
+          "end": 419,
+          "text": "137-8899-0011",
+          "note": "短横线分隔手机号"
+        }
+      ]
+    },
+    {
+      "doc_id": "02_support_ticket",
+      "path": "samples/02_support_ticket.md",
+      "title": "客服工单",
+      "note": "工单类文档：含车牌、登录 IP、设备 MAC 与两个地址",
+      "spans": [
+        {
+          "type": "PERSON_NAME",
+          "start": 104,
+          "end": 107,
+          "text": "张明远",
+          "note": "「客户姓名：」触发"
+        },
+        {
+          "type": "PHONE",
+          "start": 115,
+          "end": 126,
+          "text": "13800138000",
+          "note": "连续 11 位手机号"
+        },
+        {
+          "type": "PHONE",
+          "start": 134,
+          "end": 151,
+          "text": "+86 150 2233 4455",
+          "note": "+86 前缀 + 空格分隔"
+        },
+        {
+          "type": "EMAIL",
+          "start": 159,
+          "end": 178,
+          "text": "zhangmy@example.com",
+          "note": "邮箱"
+        },
+        {
+          "type": "PLATE",
+          "start": 185,
+          "end": 192,
+          "text": "京A12345",
+          "note": "普通号牌（7 位）"
+        },
+        {
+          "type": "ADDRESS",
+          "start": 200,
+          "end": 219,
+          "text": "上海市浦东新区张江镇祖冲之路1500号",
+          "note": "含镇/路/号"
+        },
+        {
+          "type": "IPV4",
+          "start": 229,
+          "end": 239,
+          "text": "10.12.5.77",
+          "note": "内网 IPv4"
+        },
+        {
+          "type": "MAC",
+          "start": 248,
+          "end": 265,
+          "text": "00:1B:44:11:3A:B7",
+          "note": "冒号分隔 MAC"
+        },
+        {
+          "type": "ADDRESS",
+          "start": 334,
+          "end": 356,
+          "text": "上海市徐汇区漕溪北路88号圣爱大厦1502室",
+          "note": "含楼栋/室后缀"
+        },
+        {
+          "type": "ID_CARD",
+          "start": 372,
+          "end": 390,
+          "text": "310104198806152346",
+          "note": "18 位身份证（校验位合法）"
+        }
+      ]
+    },
+    {
+      "doc_id": "03_chat_log",
+      "path": "samples/03_chat_log.md",
+      "title": "聊天记录",
+      "note": "聊天类文档：人名高频重复（考验一致性假名）、地址前置引导词",
+      "spans": [
+        {
+          "type": "PERSON_NAME",
+          "start": 91,
+          "end": 93,
+          "text": "李娜",
+          "note": "「客户」触发（第 1 次）"
+        },
+        {
+          "type": "PHONE",
+          "start": 107,
+          "end": 118,
+          "text": "13612345678",
+          "note": "连续 11 位手机号"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 153,
+          "end": 155,
+          "text": "陈静",
+          "note": "「客服」触发（第 1 次）"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 207,
+          "end": 209,
+          "text": "李娜",
+          "note": "「客户」触发（第 2 次）"
+        },
+        {
+          "type": "BANK_CARD",
+          "start": 218,
+          "end": 235,
+          "text": "62170000123456786",
+          "note": "17 位银行卡（Luhn 合法）"
+        },
+        {
+          "type": "ADDRESS",
+          "start": 240,
+          "end": 253,
+          "text": "杭州市西湖区文三路100号",
+          "note": "引导词「开户行在」被剥离"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 279,
+          "end": 281,
+          "text": "李娜",
+          "note": "「客户」触发（第 3 次）"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 290,
+          "end": 293,
+          "text": "赵国庆",
+          "note": "「共同还款人：」触发"
+        },
+        {
+          "type": "ID_CARD",
+          "start": 298,
+          "end": 316,
+          "text": "320106197811023012",
+          "note": "18 位身份证（校验位合法）"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 343,
+          "end": 345,
+          "text": "陈静",
+          "note": "「客服」触发（第 2 次）"
+        },
+        {
+          "type": "EMAIL",
+          "start": 362,
+          "end": 383,
+          "text": "lina.work@example.com",
+          "note": "邮箱"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 409,
+          "end": 411,
+          "text": "李娜",
+          "note": "「客户」触发（第 4 次）"
+        },
+        {
+          "type": "EMAIL",
+          "start": 422,
+          "end": 446,
+          "text": "lina_private@example.com",
+          "note": "邮箱"
+        }
+      ]
+    },
+    {
+      "doc_id": "04_form",
+      "path": "samples/04_form.md",
+      "title": "实名认证表单",
+      "note": "表文档：Markdown 表格内的键值对，含护照号与口令字段",
+      "spans": [
+        {
+          "type": "PERSON_NAME",
+          "start": 98,
+          "end": 101,
+          "text": "周雅琴",
+          "note": "表格「姓名」行"
+        },
+        {
+          "type": "ID_CARD",
+          "start": 113,
+          "end": 131,
+          "text": "440305199512100023",
+          "note": "18 位身份证（校验位合法）"
+        },
+        {
+          "type": "PHONE",
+          "start": 142,
+          "end": 155,
+          "text": "159-0088-7766",
+          "note": "短横线分隔手机号"
+        },
+        {
+          "type": "EMAIL",
+          "start": 167,
+          "end": 189,
+          "text": "zhouyq1995@example.com",
+          "note": "邮箱"
+        },
+        {
+          "type": "PASSPORT",
+          "start": 200,
+          "end": 209,
+          "text": "E12345678",
+          "note": "护照号启发式（E+8 位数字）"
+        },
+        {
+          "type": "ADDRESS",
+          "start": 220,
+          "end": 237,
+          "text": "广东省深圳市南山区科技园南路15号",
+          "note": "含省/市/区/路/号"
+        },
+        {
+          "type": "MAC",
+          "start": 250,
+          "end": 267,
+          "text": "3C:5A:B4:1D:2E:9F",
+          "note": "冒号分隔 MAC"
+        },
+        {
+          "type": "PASSWORD_KV",
+          "start": 279,
+          "end": 292,
+          "text": "Passw0rd!2026",
+          "note": "「登录密码」字段值"
+        },
+        {
+          "type": "PASSWORD_KV",
+          "start": 304,
+          "end": 310,
+          "text": "889900",
+          "note": "「支付密码」字段值（纯数字，靠字段名判定）"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 323,
+          "end": 326,
+          "text": "陈志刚",
+          "note": "「紧急联系人」行"
+        },
+        {
+          "type": "PHONE",
+          "start": 341,
+          "end": 352,
+          "text": "13655667788",
+          "note": "连续 11 位手机号"
+        }
+      ]
+    },
+    {
+      "doc_id": "05_contract",
+      "path": "samples/05_contract.md",
+      "title": "合同片段",
+      "note": "合同类文档：两个主体的统一社会信用代码、法人姓名、固话与对公账号",
+      "spans": [
+        {
+          "type": "USCC",
+          "start": 89,
+          "end": 107,
+          "text": "91110108MA01ABCDEN",
+          "note": "统一社会信用代码（校验字符合法）"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 114,
+          "end": 117,
+          "text": "刘振华",
+          "note": "「法定代表人：」触发"
+        },
+        {
+          "type": "ADDRESS",
+          "start": 123,
+          "end": 149,
+          "text": "北京市朝阳区建国路88号SOHO现代城A座2008室",
+          "note": "含字母楼座与室号"
+        },
+        {
+          "type": "PHONE",
+          "start": 155,
+          "end": 167,
+          "text": "010-88886666",
+          "note": "带区号固话"
+        },
+        {
+          "type": "EMAIL",
+          "start": 173,
+          "end": 202,
+          "text": "contract@xingchen.example.com",
+          "note": "邮箱"
+        },
+        {
+          "type": "USCC",
+          "start": 229,
+          "end": 247,
+          "text": "91310115MA1K4Q5F2H",
+          "note": "统一社会信用代码（校验字符合法）"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 254,
+          "end": 257,
+          "text": "孙丽娟",
+          "note": "「法定代表人：」触发"
+        },
+        {
+          "type": "ADDRESS",
+          "start": 263,
+          "end": 276,
+          "text": "上海市徐汇区宜山路700号",
+          "note": "含路/号"
+        },
+        {
+          "type": "PHONE",
+          "start": 282,
+          "end": 294,
+          "text": "021-56789012",
+          "note": "带区号固话"
+        },
+        {
+          "type": "EMAIL",
+          "start": 300,
+          "end": 323,
+          "text": "law@yunheng.example.com",
+          "note": "邮箱"
+        },
+        {
+          "type": "BANK_CARD",
+          "start": 390,
+          "end": 409,
+          "text": "6212260200012345670",
+          "note": "19 位对公账号（Luhn 合法）"
+        }
+      ]
+    },
+    {
+      "doc_id": "06_system_log",
+      "path": "samples/06_system_log.md",
+      "title": "系统日志导出",
+      "note": "日志类文档：网络标识与凭据密集，含跨行的 PEM 私钥块",
+      "spans": [
+        {
+          "type": "IPV4",
+          "start": 136,
+          "end": 149,
+          "text": "192.168.31.24",
+          "note": "内网 IPv4"
+        },
+        {
+          "type": "MAC",
+          "start": 154,
+          "end": 171,
+          "text": "00:1B:44:11:3A:B7",
+          "note": "冒号分隔 MAC"
+        },
+        {
+          "type": "IPV4",
+          "start": 239,
+          "end": 251,
+          "text": "203.0.113.45",
+          "note": "公网 IPv4（TEST-NET-3 段）"
+        },
+        {
+          "type": "IPV6",
+          "start": 317,
+          "end": 345,
+          "text": "2001:db8:85a3::8a2e:370:7334",
+          "note": "压缩写法的 IPv6"
+        },
+        {
+          "type": "API_KEY",
+          "start": 394,
+          "end": 430,
+          "text": "sk-proj-AbCdEfGhIjKlMnOpQrStUvWx1234",
+          "note": "OpenAI 风格密钥"
+        },
+        {
+          "type": "API_KEY",
+          "start": 475,
+          "end": 495,
+          "text": "AKIA2E7QPZFAKEEXAMPL",
+          "note": "AWS Access Key ID 格式"
+        },
+        {
+          "type": "API_KEY",
+          "start": 552,
+          "end": 592,
+          "text": "ghp_AbCdEfGhIjKlMnOpQrStUvWxYz0123456789",
+          "note": "GitHub PAT 格式"
+        },
+        {
+          "type": "PASSWORD_KV",
+          "start": 642,
+          "end": 657,
+          "text": "Pr0d-Pass-2026!",
+          "note": "「password=」字段值"
+        },
+        {
+          "type": "IPV4",
+          "start": 675,
+          "end": 685,
+          "text": "10.12.5.77",
+          "note": "连接串中的内网 IPv4"
+        },
+        {
+          "type": "JWT",
+          "start": 725,
+          "end": 838,
+          "text": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDAwMSIsImV4cCI6MTc5MDAwMDAwMH0.7Xk2Qw9RtFzB4mNsPd8Uv6YaHcE1JgLo",
+          "note": "三段式 JWT"
+        },
+        {
+          "type": "PHONE",
+          "start": 884,
+          "end": 895,
+          "text": "13398765432",
+          "note": "连续 11 位手机号"
+        },
+        {
+          "type": "PRIVATE_KEY",
+          "start": 974,
+          "end": 1146,
+          "text": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDFAKEKEY001\nKEYMATERIALFAKE00000000000000000000000000000000000000000\n-----END PRIVATE KEY-----",
+          "note": "跨行 PEM 私钥块"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 1181,
+          "end": 1183,
+          "text": "李强",
+          "note": "「用户」触发"
+        }
+      ]
+    },
+    {
+      "doc_id": "07_edge_cases",
+      "path": "samples/07_edge_cases.md",
+      "title": "边界样本",
+      "note": "刻意包含当前实现支持不足的写法，用于量化已知弱点；全部数据虚构",
+      "spans": [
+        {
+          "type": "PERSON_NAME",
+          "start": 156,
+          "end": 159,
+          "text": "赵鹏飞",
+          "note": "无上下文触发的人名（预期漏检）"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 164,
+          "end": 166,
+          "text": "周敏",
+          "note": "无上下文触发的人名（预期漏检）"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 187,
+          "end": 190,
+          "text": "欧阳文",
+          "note": "复姓人名（预期漏检）"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 202,
+          "end": 205,
+          "text": "司马明",
+          "note": "复姓人名（预期漏检）"
+        },
+        {
+          "type": "ID_CARD",
+          "start": 221,
+          "end": 236,
+          "text": "110101900307851",
+          "note": "15 位旧版身份证号（预期漏检）"
+        },
+        {
+          "type": "PHONE",
+          "start": 249,
+          "end": 264,
+          "text": "＋86 13812345678",
+          "note": "全角加号：仅命中号码部分（边界不一致）"
+        },
+        {
+          "type": "MAC",
+          "start": 282,
+          "end": 296,
+          "text": "001b.44aa.11b7",
+          "note": "点分格式 MAC（预期漏检）"
+        },
+        {
+          "type": "PLATE",
+          "start": 309,
+          "end": 317,
+          "text": "京A·12345",
+          "note": "带间隔号的号牌（预期漏检）"
+        },
+        {
+          "type": "EMAIL",
+          "start": 329,
+          "end": 343,
+          "text": "张三@example.com",
+          "note": "中文别名邮箱（预期漏检）"
+        },
+        {
+          "type": "PASSWORD_KV",
+          "start": 366,
+          "end": 379,
+          "text": "Passw0rd-2026",
+          "note": "无分隔符的口令写法（预期漏检）"
+        },
+        {
+          "type": "ID_CARD",
+          "start": 424,
+          "end": 442,
+          "text": "11010119900307803x",
+          "note": "小写 x 校验位（支持）"
+        },
+        {
+          "type": "BANK_CARD",
+          "start": 458,
+          "end": 479,
+          "text": "6222 0212 3456 7890 3",
+          "note": "分段书写的银行卡（支持）"
+        },
+        {
+          "type": "USCC",
+          "start": 498,
+          "end": 516,
+          "text": "911101080000000007",
+          "note": "全数字信用代码（支持）"
+        },
+        {
+          "type": "EMAIL",
+          "start": 531,
+          "end": 553,
+          "text": "zhang+work@example.com",
+          "note": "带加号的邮箱别名（支持）"
+        },
+        {
+          "type": "PERSON_NAME",
+          "start": 567,
+          "end": 569,
+          "text": "王涛",
+          "note": "敬称形式（支持）"
+        }
+      ]
+    },
+    {
+      "doc_id": "08_plain_text",
+      "path": "samples/08_plain_text.md",
+      "title": "误报压测文本",
+      "note": "不含个人信息的普通中文文本；金标为空，理想输出 0 命中（用于误报回归）",
+      "spans": []
+    }
+  ]
+}

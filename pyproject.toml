@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pii-redactor"
+version = "0.1.0"
+description = "敏感信息识别与脱敏工具箱：PII/凭据检测、五种脱敏策略、残留二次校验与评测"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+  { name = "Zhao Wang", email = "231495557+wangzhao-cs@users.noreply.github.com" },
+]
+keywords = ["pii", "dlp", "data-security", "redaction", "privacy", "china", "id-card", "luhn"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Security",
+  "Topic :: Text Processing :: Filters",
+]
+# 核心功能零第三方依赖（纯标准库）
+dependencies = []
+
+[project.optional-dependencies]
+# HTTP 服务包装（extras.create_app）
+fastapi = ["fastapi>=0.110", "uvicorn>=0.29"]
+# 分词增强（extras.segment / name_candidates）
+jieba = ["jieba>=0.42"]
+all = ["fastapi>=0.110", "uvicorn>=0.29", "jieba>=0.42"]
+dev = ["ruff>=0.4", "mypy>=1.8"]
+
+[project.urls]
+Homepage = "https://github.com/wangzhao-cs/pii-redactor"
+Repository = "https://github.com/wangzhao-cs/pii-redactor"
+Issues = "https://github.com/wangzhao-cs/pii-redactor/issues"
+
+[project.scripts]
+pii-redactor = "pii_redactor.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pii_redactor = ["py.typed"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.9"
+ignore_missing_imports = true
+warn_unused_ignores = false
